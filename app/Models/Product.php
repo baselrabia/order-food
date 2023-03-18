@@ -14,7 +14,7 @@ class Product extends Model
         'price',
     ];
 
-    public function ingredients()
+    public function ingredients(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Ingredient::class)->withPivot('quantity');
     }
