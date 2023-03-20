@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Order;
 
 use App\Models\Order;
+use App\Repositories\Product\ProductRepositoryInterface;
 
-class OrderRepository
+class OrderRepository implements OrderRepositoryInterface
 {
-    private ProductRepository $productRepo;
+    private ProductRepositoryInterface $productRepo;
 
-    public function __construct(ProductRepository $productRepo)
+    public function __construct(ProductRepositoryInterface $productRepo)
     {
         $this->productRepo = $productRepo;
     }

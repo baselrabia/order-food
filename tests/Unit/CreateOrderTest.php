@@ -5,12 +5,10 @@ namespace Tests\Unit;
 use App\Mail\IngredientThresholdReached;
 use App\Models\Ingredient;
 use App\Models\Product;
-use App\Repositories\OrderRepository;
-use App\Repositories\ProductRepository;
 use App\Services\OrderService;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -91,6 +89,8 @@ class CreateOrderTest extends TestCase
      */
     public function test_email_queued_when_threshold_reached(): void
     {
+        Mail::fake();
+
         $payload = [
             "products" => [
                 [
@@ -106,6 +106,10 @@ class CreateOrderTest extends TestCase
 
         $ingredient = Ingredient::where("name", "Onion")->first();
         $this->assertEquals(true, $ingredient->notification_sent);
+
+        Mail::assertQueued(IngredientThresholdReached::class, function ($mail) {
+            return $mail->ingredient->name === 'Onion';
+        });
     }
 
 

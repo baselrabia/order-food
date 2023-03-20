@@ -15,7 +15,7 @@ class IngredientThresholdReached extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Ingredient $ingredient;
+    public Ingredient $ingredient;
 
     /**
      * Create a new message instance.

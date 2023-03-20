@@ -3,18 +3,21 @@
 namespace App\Services;
 
 use App\Models\Order;
-use App\Repositories\IngredientRepository;
-use App\Repositories\OrderRepository;
-use App\Repositories\ProductRepository;
+use App\Repositories\Ingredient\IngredientRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
 class OrderService
 {
-    private OrderRepository $orderRepo;
-    private ProductRepository $productRepo;
-    private IngredientRepository $ingredientRepo;
+    private OrderRepositoryInterface $orderRepo;
+    private ProductRepositoryInterface $productRepo;
+    private IngredientRepositoryInterface $ingredientRepo;
 
-    public function __construct(OrderRepository $orderRepo, ProductRepository $productRepo, IngredientRepository $ingredientRepo)
+    public function __construct(
+        OrderRepositoryInterface      $orderRepo,
+        ProductRepositoryInterface    $productRepo,
+        IngredientRepositoryInterface $ingredientRepo)
     {
         $this->orderRepo = $orderRepo;
         $this->productRepo = $productRepo;

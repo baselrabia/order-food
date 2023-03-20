@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::post('/order', [OrderController::class, 'store']);
+Route::post('/orders', [OrderController::class, 'store']);

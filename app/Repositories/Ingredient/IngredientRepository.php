@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Ingredient;
 
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\Log;
 
-class IngredientRepository
+class IngredientRepository implements IngredientRepositoryInterface
 {
     public function updateIngredientStock(int|string $ingredient_id, mixed $quantity): void
     {
