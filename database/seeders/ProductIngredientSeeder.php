@@ -51,10 +51,10 @@ class ProductIngredientSeeder extends Seeder
                     'threshold' => 50,
                     'quantity' => 20,
                 ],
-             ];
+            ];
 
             foreach ($ingredients as $ingredientData) {
-                $ingredient = Ingredient::create([
+                $ingredient = Ingredient::firstOrCreate([
                     'name' => $ingredientData['name'],
                     'full_stock' => $ingredientData['stock'],
                     'stock' => $ingredientData['stock'],
