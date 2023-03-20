@@ -33,6 +33,7 @@ class IngredientThresholdReached extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            to: "merchent@example.com",
             subject: 'Ingredient Threshold Reached',
         );
     }

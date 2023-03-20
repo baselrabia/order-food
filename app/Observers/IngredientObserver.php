@@ -17,7 +17,7 @@ class IngredientObserver
         $ingredient_threshold = ($ingredient->full_stock * $ingredient->threshold) / 100;
         if ($ingredient->stock < $ingredient_threshold && !$ingredient->notification_sent) {
             // send email to the merchant
-            Mail::to('merchent@example.com')->queue(new IngredientThresholdReached($ingredient));
+            Mail::queue(new IngredientThresholdReached($ingredient));
             $ingredient->notification_sent = true;
             $ingredient->save();
         }
