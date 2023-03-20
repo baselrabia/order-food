@@ -2,10 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Mail\IngredientThresholdReached;
 use App\Models\Ingredient;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class IngredientRepository
 {
@@ -21,16 +19,10 @@ class IngredientRepository
                 ' Quantity needed : ' . $quantity . ' Stock is : ' . $ingredient->stock);
             throw new \Exception("The current ingredient stock is insufficient to fulfill the order quantity");
         }
-        $ingredient->stock -= $quantity;
-        $ingredient->save();
 
-        $ingredient_threshold = ($ingredient->full_stock * $ingredient->threshold) / 100;
-        if ($ingredient->stock < $ingredient_threshold && !$ingredient->notification_sent) {
-            // send email to the merchant
-            Mail::to('merchent@example.com')->queue(new IngredientThresholdReached($ingredient));
-            $ingredient->notification_sent = true;
-            $ingredient->save();
-        }
+        $ingredient->update([
+            "stock" => $ingredient->stock - $quantity
+        ]);
     }
 }
 
