@@ -11,8 +11,10 @@ class Ingredient extends Model
 
     protected $fillable = [
         'name',
+        'full_stock',
         'stock',
         'threshold',
+        'notification_sent'
     ];
 
     public function products()

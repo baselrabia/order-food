@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('stock', 8, 2);
+            $table->decimal('full_stock', 8, 2);
             $table->integer('threshold')->default(50);
+            $table->decimal('stock', 8, 2);
+            $table->boolean('notification_sent')->default(false);
             $table->timestamps();
         });
     }

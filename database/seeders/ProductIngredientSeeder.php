@@ -13,46 +13,55 @@ class ProductIngredientSeeder extends Seeder
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
-        // Create Burger
-        $productData = [
-            'name' => 'Burger',
-            'price' => 5.99,
+        // Create some products
+        $products = [
+            [
+                'name' => 'burger',
+                'price' => 5.99,
+            ],
+            [
+                'name' => 'Cheeseburger',
+                'price' => 6.99,
+            ],
+
         ];
 
-        $product = Product::create($productData);
+        foreach ($products as $productData) {
+            $product = Product::create($productData);
 
-        // Attach ingredients to the product
-        $ingredients = [
-            [
-                'name' => 'Beef',
-                'stock' => 20000,
-                'threshold' => 50,
-                'quantity' => 150,
-            ],
-            [
-                'name' => 'Cheese',
-                'stock' => 5000,
-                'threshold' => 50,
-                'quantity' => 30,
-            ],
-            [
-                'name' => 'Onion',
-                'stock' => 1000,
-                'threshold' => 50,
-                'quantity' => 20,
-            ],
-        ];
+            // Attach ingredients to the product
+            $ingredients = [
+                [
+                    'name' => 'Beef',
+                    'stock' => 20000,
+                    'threshold' => 50,
+                    'quantity' => 150,
+                ],
+                [
+                    'name' => 'Cheese',
+                    'stock' => 5000,
+                    'threshold' => 50,
+                    'quantity' => 30,
+                ],
+                [
+                    'name' => 'Onion',
+                    'stock' => 1000,
+                    'threshold' => 50,
+                    'quantity' => 20,
+                ],
+             ];
 
-        foreach ($ingredients as $ingredientData) {
-            $ingredient = Ingredient::create([
-                'name' => $ingredientData['name'],
-                'stock' => $ingredientData['stock'],
-                'threshold' => $ingredientData['threshold'],
-            ]);
-            $product->ingredients()->attach($ingredient, ['quantity' => $ingredientData['quantity']]);
+            foreach ($ingredients as $ingredientData) {
+                $ingredient = Ingredient::create([
+                    'name' => $ingredientData['name'],
+                    'full_stock' => $ingredientData['stock'],
+                    'stock' => $ingredientData['stock'],
+                    'threshold' => $ingredientData['threshold'],
+                ]);
+                $product->ingredients()->attach($ingredient, ['quantity' => $ingredientData['quantity']]);
+            }
         }
-
     }
 }
