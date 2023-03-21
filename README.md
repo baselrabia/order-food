@@ -39,8 +39,9 @@ The Restaurant Inventory Management System is a web application for managing the
 2. Install the required dependencies by running `composer install`.
 3. Create a copy of the `.env.example` file and name it `.env`.
 4. Create a test database and update the `DB_DATABASE` value in the `.env` file.
-5. Run the migrations and seed the database using `php artisan migrate --seed`.
-6. Run the test cases using `php artisan test`.
+5. Update queue connection `QUEUE_CONNECTION` value to `database` in the `.env` file.
+6. Run the migrations and seed the database using `php artisan migrate --seed`.
+7. Run the test cases using `php artisan test`.
 
 ### Running the Project
 
@@ -48,8 +49,9 @@ The Restaurant Inventory Management System is a web application for managing the
 2. Install the required dependencies by running `composer install`.
 3. Create a copy of the `.env.example` file and name it `.env`.
 4. Update the `DB_DATABASE` value in the `.env` file to point to your database.
-5. Run the migrations and seed the database using `php artisan migrate --seed`.
-6. Start the local development server using `php artisan serve`.
+5. Update queue connection `QUEUE_CONNECTION` value to `database` in the `.env` file.
+6. Run the migrations and seed the database using `php artisan migrate --seed`.
+7. Start the local development server using `php artisan serve`.
 
 # API Documentation
 
