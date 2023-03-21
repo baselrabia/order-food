@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Services\OrderService;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
@@ -20,7 +22,10 @@ class OrderController extends Controller
         try {
             $order = $this->orderService->createOrder($request->validated());
 
-            return response()->json($order);
+            return response()->json([
+                "message" => "Order successfully created",
+                "order" => $order,
+            ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             Log::error('Error creating order: ' . $e->getMessage());
             return response()->json(['message' => 'An error occurred while creating the order. Please try again.'], 500);

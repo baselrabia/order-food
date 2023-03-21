@@ -21,6 +21,7 @@ class IngredientFactory extends Factory
     {
         return [
             'name' => fake()->unique()->word(),
+            'full_stock' => fake()->randomFloat(2, 20000, 50000),
             'stock' => fake()->randomFloat(2, 2000, 50000),
             'threshold' => fake()->randomFloat(2, 50, 100),
         ];
